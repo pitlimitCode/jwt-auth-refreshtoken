@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './Home';
-import Page from './Page';
+import Home from './pages/Home';
+import Page from './pages/Login';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/page" element={<Page />} />
+          <Route path="/login" element={<Page />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
