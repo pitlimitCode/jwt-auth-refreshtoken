@@ -1,30 +1,43 @@
 import '../styles/App.css';
 import { Link } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { Navigate } from "react-router-dom";
 
 import Navbar from './components/Navbar';
 
 export default function Login() {
-  
-function inin() {
-  sessionStorage.setItem("login", true)
-  // console.log('inin')
-}
-function otot() {
-  sessionStorage.setItem("login", false)
-  // console.log('otot')
-}
+  const strg = sessionStorage
+  const isLogin = strg.getItem('login');
+  let nav;
+  if (isLogin === 'false'){
+    nav = 
+      {
+        navleft: {
+          path: '/',
+          name: 'Home'
+        },
+        navright: {
+          path: '/login',
+          name: ''
+        }
+      }
+  } else {
+    return <Navigate to="/" />;
+  }
+
+  function handleLogin() {
+    sessionStorage.setItem("login", true)
+  }
 
   return (
     <div className="App">
-      <Navbar />
+    <Navbar send={{nav, isLogin}} />
       <div className='container'>
-      
-        <div className="">
+
+        <div className="flexcenter">
           This is 'Login' page
         </div>
-        <button onClick={otot}><Link to='/'>Logout</Link></button>
-        <button onClick={inin}><Link to='/'>Login</Link></button>
+
+        <button onClick={handleLogin}><Link to='/'>Login</Link></button>
       </div>
     </div>
   );
