@@ -1,12 +1,12 @@
-## boilerplate pitlimitcode - react JS
+## JWT Auth Refresh Token - React JS
 
 cloning to local:  
 direct command-prompt to specific path to put this project  
 ```
-git clone https://github.com/pitlimitCode/boilerplate-reactjs.git
+git clone https://github.com/pitlimitCode/jwt-auth-refreshtoken.git
 ```
 ```
-cd boilerplate-reactjs
+cd .....
 ```
 ```
 npm install

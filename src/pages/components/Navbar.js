@@ -1,11 +1,11 @@
-import '../../styles/App.css';
+
 import { Link } from 'react-router-dom';
 
 export default function Profile(test) {
   // console.log('nav', test)
 
   function handleLogout() {
-    sessionStorage.setItem("login", false)
+    sessionStorage.setItem("login", 'false')
   }
 
   return (
@@ -14,7 +14,9 @@ export default function Profile(test) {
         <div className='navBarCenter'>
 
           <div className='navPart flexleft'>
-            <Link to={test.send?.nav?.navleft.path}>{test.send?.nav?.navleft.name}</Link>
+            <Link to={test.send?.nav?.navleft.path}>
+              {test.send?.nav?.navleft.name}
+            </Link>
           </div>
 
           <div className='navPart flexcenter'>
@@ -33,7 +35,9 @@ export default function Profile(test) {
                     {test.send?.nav?.navright.name}
                   </Link>
                 </div>
-              : <Link to={test.send?.nav?.navright.path}>{test.send?.nav?.navright.name}</Link>
+              : <Link to={test.send?.nav?.navright.path}>
+                  {test.send?.nav?.navright.name}
+                </Link>
             }
           </div>
 
