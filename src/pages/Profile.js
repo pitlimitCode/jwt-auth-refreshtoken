@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import Navbar from './components/Navbar';
 
 export default function Profile() {
-  const strg = sessionStorage
+  const strg = sessionStorage;
   const isLogin = strg.getItem('login');
   let nav;
   if (isLogin === 'true'){

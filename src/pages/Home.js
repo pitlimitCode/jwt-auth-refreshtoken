@@ -5,7 +5,7 @@ import '../styles/App.css';
 import Navbar from './components/Navbar';
 
 export default function Home() {
-  const strg = sessionStorage
+  const strg = sessionStorage;
   if(strg.getItem('login') == null){
     strg.setItem('login', false);
   }
