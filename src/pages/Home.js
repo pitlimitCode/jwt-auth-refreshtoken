@@ -1,7 +1,15 @@
-
 import Navbar from './components/Navbar';
 
+// import { useState } from 'react';
+
 export default function Home() {
+  // const [allUsers, setAllUsers] = useState(sessionStorage.getItem('login'));
+  // const allUsers = sessionStorage.getItem('users');
+  // JSON
+
+  const userDatas = sessionStorage.getItem('users');
+  const parse = JSON.parse(userDatas);
+
   const isLogin = sessionStorage.getItem('login');
   let nav;
   if (isLogin === 'true'){
@@ -35,8 +43,14 @@ export default function Home() {
       <Navbar send={{nav, isLogin}} />
       <div className='container'>
 
+        <div className="flexcenter">All Users and Password :</div>
+        <br/>
         <div className="flexcenter">
-          This is 'Home' page
+          <pre style={{ display: 'block' }}>
+            <code>
+              {JSON.stringify(parse, null, 2)}
+            </code>
+          </pre>
         </div>
 
       </div>

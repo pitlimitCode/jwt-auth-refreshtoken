@@ -1,12 +1,24 @@
 
 import { Link } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 export default function Profile(test) {
   // console.log('nav', test)
 
   function handleLogout() {
     sessionStorage.setItem("login", 'false')
+    sessionStorage.setItem('jwt', null)
+    sessionStorage.setItem('activeUser', null)
   }
+
+  // useEffect(() => {
+  //   first
+  
+  //   return () => {
+  //     second
+  //   }
+  // }, [third])
+  
 
   return (
     <div className="navbar">

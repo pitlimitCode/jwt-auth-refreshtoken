@@ -7,8 +7,11 @@ import Page from './pages/Login';
 import Profile from './pages/Profile';
 
 export default function App() {
+
   if(sessionStorage.getItem('login') == null){
     sessionStorage.setItem('login', 'false');
+    sessionStorage.setItem('jwt', null);
+    sessionStorage.setItem('activeUser', null)
     const users = 
     [
       {
@@ -21,9 +24,11 @@ export default function App() {
     // console.log(userJsonString);
     sessionStorage.setItem('users', userJsonString);
     // const userJsonParse = JSON.parse(userJsonString);
-    // console.log(userJsonParse);
-    
+    // console.log(userJsonParse); 
   }
+
+  
+
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
