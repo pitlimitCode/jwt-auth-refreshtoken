@@ -9,6 +9,20 @@ import Profile from './pages/Profile';
 export default function App() {
   if(sessionStorage.getItem('login') == null){
     sessionStorage.setItem('login', 'false');
+    const users = 
+    [
+      {
+        namee: 'user',
+        pass: 'pass',
+      },
+    ];
+    // console.log(users);
+    const userJsonString = JSON.stringify(users);
+    // console.log(userJsonString);
+    sessionStorage.setItem('users', userJsonString);
+    // const userJsonParse = JSON.parse(userJsonString);
+    // console.log(userJsonParse);
+    
   }
   return (
     <BrowserRouter>

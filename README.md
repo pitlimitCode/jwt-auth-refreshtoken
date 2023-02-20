@@ -6,7 +6,7 @@ direct command-prompt to specific path to put this project
 git clone https://github.com/pitlimitCode/jwt-auth-refreshtoken.git
 ```
 ```
-cd .....
+cd jwt-auth-refreshtoken
 ```
 ```
 npm install
