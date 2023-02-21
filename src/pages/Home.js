@@ -1,12 +1,8 @@
 import Navbar from './components/Navbar';
 
-// import { useState } from 'react';
 
-export default function Home() {
-  // const [allUsers, setAllUsers] = useState(sessionStorage.getItem('login'));
-  // const allUsers = sessionStorage.getItem('users');
-  // JSON
 
+export default function Home(props) {
   const userDatas = sessionStorage.getItem('users');
   const parse = JSON.parse(userDatas);
 
@@ -40,10 +36,10 @@ export default function Home() {
 
   return (
     <div className="App">
-      <Navbar send={{nav, isLogin}} />
+      <Navbar send={{nav, isLogin, cd: props.cd}} />
       <div className='container'>
 
-        <div className="flexcenter">All Users and Password :</div>
+        <div className="flexcenter">All Users and Password:</div>
         <br/>
         <div className="flexcenter">
           <pre style={{ display: 'block' }}>

@@ -2,11 +2,10 @@ import Navbar from './components/Navbar';
 
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from 'react';
-
+import axios from "axios";
 // import { useEffect, useState } from 'react';
-// import axios from "axios";
 
-export default function Login() {
+export default function RegisterLogin(props) {
   const navigate = useNavigate();
 
   const [nameeLog, setNameeLog] = useState("");
@@ -47,15 +46,7 @@ export default function Login() {
     event.preventDefault();
     setRegisDangerAlert(true);
     setRegisSuccessAlert(true);
-    // console.log(userDatas);
-
-    // axios.post('http://localhost:8000/refresh', {}, {'headers': {'authorization': 'Bearer yeayyy'}})
-    // axios.post('http://localhost:8000/refresh')
-    //   .then(res => {
-    //     sessionStorage.setItem('jwt', res.data.token);
-    //     console.log(res.data);
-    //   });
-
+    
     const regis = { namee: nameeReg, pass: passReg, };
     // console.log(regis);
   
@@ -76,9 +67,19 @@ export default function Login() {
       setLoginDangerAlert(false);
     } else {
       // setLoginDangerAlert(true);
+      
+      // axios.post('http://localhost:8000/refresh', {}, {'headers': {'authorization': 'Bearer yeayyy'}})
       sessionStorage.setItem('login', 'true')
       sessionStorage.setItem('activeUser', nameeLog)
-      navigate("/profile")
+
+      axios.post('http://localhost:8000/login')
+        .then(res => {
+          sessionStorage.setItem('token', res.data.token);
+          sessionStorage.setItem('tokenExpired', res.data.tokenExpired);
+          // console.log(res.data);
+          navigate("/profile")
+        });
+      props.startCd(props.varCdTime)
     }
   }
 
