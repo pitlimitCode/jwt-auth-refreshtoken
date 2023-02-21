@@ -1,12 +1,10 @@
-
 import { Link } from 'react-router-dom';
 
 export default function Profile(porps) {
-
   function handleLogout() {
-    sessionStorage.setItem("login", 'false')
-    sessionStorage.setItem('token', null)
-    sessionStorage.setItem('activeUser', null)
+    sessionStorage.setItem('activeUser', null);
+    sessionStorage.setItem("login", 'false');
+    sessionStorage.setItem('token', null);
     sessionStorage.setItem('tokenExpired', null);
   }
   

@@ -1,12 +1,14 @@
 import Navbar from './components/Navbar';
 
-import { Navigate, useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import axios from "axios";
-// import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 export default function RegisterLogin(props) {
-  const navigate = useNavigate();
+  const userDatas = sessionStorage.getItem('users');
+  const isLogin = sessionStorage.getItem('login');
+  const activeUser = sessionStorage.getItem('activeUser');
 
   const [nameeLog, setNameeLog] = useState("");
   const [passLog, setPassLog] = useState("");
@@ -16,10 +18,6 @@ export default function RegisterLogin(props) {
   const [regisSuccessAlert, setRegisSuccessAlert] = useState(true);
   const [hiddenButRegis, setHiddenButRegis] = useState(true);
   const [loginDangerAlert, setLoginDangerAlert] = useState(true);
-  
-  // useEffect(() => {
-    
-  // }, [namee, pass])
   
   function checkUsername(arr, key, val) {
     for (var i = 0; i < arr.length; i++) {
@@ -38,8 +36,7 @@ export default function RegisterLogin(props) {
     return false;
   }
 
-  const isLogin = sessionStorage.getItem('login');
-  const userDatas = sessionStorage.getItem('users');
+  const navigate = useNavigate();
   const parse = JSON.parse(userDatas);
   
   const handleRegister = (event) => {
@@ -48,7 +45,6 @@ export default function RegisterLogin(props) {
     setRegisSuccessAlert(true);
     
     const regis = { namee: nameeReg, pass: passReg, };
-    // console.log(regis);
   
     if(checkUsername(parse, "namee", nameeReg) || nameeReg === ''){
       setRegisDangerAlert(false);
@@ -66,9 +62,6 @@ export default function RegisterLogin(props) {
     if(!checkAuthLogin(parse, "namee", nameeLog, "pass", passLog) || nameeLog === ''){
       setLoginDangerAlert(false);
     } else {
-      // setLoginDangerAlert(true);
-      
-      // axios.post('http://localhost:8000/refresh', {}, {'headers': {'authorization': 'Bearer yeayyy'}})
       sessionStorage.setItem('login', 'true')
       sessionStorage.setItem('activeUser', nameeLog)
 
@@ -76,16 +69,19 @@ export default function RegisterLogin(props) {
         .then(res => {
           sessionStorage.setItem('token', res.data.token);
           sessionStorage.setItem('tokenExpired', res.data.tokenExpired);
-          // console.log(res.data);
+          sessionStorage.setItem('varCdTime', res.data.varCdTime);
+          props.startCd(res.data.varCdTime)
+        })
+        .finally(() => {
           navigate("/profile")
         });
-      props.startCd(props.varCdTime)
     }
   }
 
   let nav;
-  if (isLogin === 'true'){
+  if (isLogin === 'true' && activeUser !== 'null'){
     return <Navigate to="/profile" />;
+    // navigate("/profile")
   } else {
     nav = 
       {

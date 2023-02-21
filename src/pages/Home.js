@@ -1,7 +1,5 @@
 import Navbar from './components/Navbar';
 
-
-
 export default function Home(props) {
   const userDatas = sessionStorage.getItem('users');
   const parse = JSON.parse(userDatas);

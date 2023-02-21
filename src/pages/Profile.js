@@ -1,22 +1,30 @@
 import Navbar from './components/Navbar';
-// import Countdown from './components/Countdown';
 
-import { Navigate } from "react-router-dom";
-// import { useState } from 'react';
+import axios from "axios";
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Profile(props) {
-  const userDatas2 = sessionStorage.getItem('users');
-  const userDatas = JSON.parse(userDatas2);
   const aktiv = sessionStorage.getItem('activeUser');
+  const token = sessionStorage.getItem('token')
+  const userDatas = JSON.parse(sessionStorage.getItem('users'));
   
   let activeUser = {};
   for (var i = 0; i < userDatas.length; i++) {
     if (userDatas[i]['namee'] === aktiv) {
       activeUser = userDatas[i];
-      activeUser.expired = sessionStorage.getItem('tokenExpired')
+      if(token === 'null') {
+        activeUser._ = ''
+        activeUser.message = 'SERVER-SIDE ERROR'
+      } else {
+        activeUser.token = `${token.substring(0, 10)}...${token.substring(token.length-10, token.length)}`;
+        // activeUser.token = sessionStorage.getItem('token')
+        activeUser.expired = sessionStorage.getItem('tokenExpired')
+      }
     }
   }
   
+  const navigate = useNavigate();
+
   const isLogin = sessionStorage.getItem('login');
   let nav;
   if (isLogin === 'true'){
@@ -32,8 +40,28 @@ export default function Profile(props) {
         }
       }
   } else {
+    // navigate("/login")
     return <Navigate to="/login" />;
   }
+
+  const buttonCd = () => {
+    axios.post('http://localhost:8000/refresh', {
+      jwt: sessionStorage.getItem('token')
+    })
+      .then(res => {
+        if (res.data.token === 'expired'){
+          sessionStorage.setItem('activeUser', null)
+          sessionStorage.setItem("login", 'false')
+          sessionStorage.setItem('token', null)
+          sessionStorage.setItem('tokenExpired', null);
+          navigate("/login")
+        } else {
+          sessionStorage.setItem('token', res.data.token);
+          sessionStorage.setItem('tokenExpired', res.data.tokenExpired);
+          props.refreshCd(sessionStorage.getItem('varCdTime'))
+        }
+      });
+  };
 
   return (
     <div className="App">
@@ -41,13 +69,16 @@ export default function Profile(props) {
       <div className='container'>
       
         <div className="flexcenter">
-          <div type='button'
-            onClick={props.buttonCd}
+          <div 
+            type='button'
+            onClick={buttonCd}
             style={{
               border: '2px solid var(--color2)',
               marginLeft: '2px',
-              padding: '0 3px 2px 3px',
+              padding: '0.5rem',
               cursor: 'pointer',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
             }}
             > Refresh Token </div>
         </div>
