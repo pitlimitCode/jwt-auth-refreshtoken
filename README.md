@@ -17,5 +17,5 @@ run project:
 npm run start
 ```
 
-Need [Back-End](https://github.com/pitlimitCode/jwt-auth-refreshtoken-be.git)
-[Figma Design](https://www.figma.com/file/Gieg4N3OIVEOxRJakcDXlc/refresh-token-UI?node-id=0%3A1&t=jHEySL3MVDRZ0nZh-0)
+Need [Back-End](https://github.com/pitlimitCode/jwt-auth-refreshtoken-be.git)  
+[Figma Design](https://www.figma.com/file/Gieg4N3OIVEOxRJakcDXlc/refresh-token-UI?node-id=0%3A1&t=jHEySL3MVDRZ0nZh-0)  
