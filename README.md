@@ -1,7 +1,7 @@
 ## JWT Auth Refresh Token - React JS
 
-cloning to local:  
-direct command-prompt to specific path to put this project  
+### Cloning to local:  
+Direct your path in command-prompt to put this project, then:  
 ```
 git clone https://github.com/pitlimitCode/jwt-auth-refreshtoken.git
 ```
@@ -14,12 +14,5 @@ npm install
 
 run project:
 ```
-npm start
+npm run start
 ```
-
-create a production bundle:  
-```
-npm run build
-```
-
-[React JS - docs](https://reactjs.org/docs/code-splitting.html)  
