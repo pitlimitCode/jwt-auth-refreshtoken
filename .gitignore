@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # custom
-.toDo.txt
-.README-reactJs.md
+/toDo.txt
+/README-reactJs.md
