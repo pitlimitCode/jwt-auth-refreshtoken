@@ -45,7 +45,7 @@ export default function Profile(props) {
   }
 
   const buttonCd = () => {
-    axios.post('http://localhost:8000/refresh', {
+    axios.post(`${process.env.REACT_APP_BE}/refresh`, {
       jwt: sessionStorage.getItem('token')
     })
       .then(res => {

@@ -65,7 +65,7 @@ export default function RegisterLogin(props) {
       sessionStorage.setItem('login', 'true')
       sessionStorage.setItem('activeUser', nameeLog)
 
-      axios.post('http://localhost:8000/login')
+      axios.post(`${process.env.REACT_APP_BE}/login`)
         .then(res => {
           sessionStorage.setItem('token', res.data.token);
           sessionStorage.setItem('tokenExpired', res.data.tokenExpired);
